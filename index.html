@@ -19,32 +19,34 @@
         }
 
         // Inputs
+        let textSize = 20;
+        let text = "graph of anything";
         const graphSize = 250;
         const lineWidth = 20;
         const itens = [
             {
                 value: 0.05,
-                color: "#0f0"
+                color: "#55dd55"
             },
             {
                 value: 0.16,
-                color: "#f00"
+                color: "#dd5555"
             },
             {
                 value: 0.29,
-                color: "#00f"
+                color: "#5555dd"
             },
             {
                 value: 0.15,
-                color: "#0ff"
+                color: "#55dddd"
             },
             {
                 value: 0.09,
-                color: "#ff0"
+                color: "#dddd55"
             },
             {
                 value: 0.26,
-                color: "#f0f"
+                color: "#dd55dd"
             }
         ];
 
@@ -58,18 +60,33 @@
         let y = (graphSize / 2);
         let radius = ((graphSize - lineWidth) / 2);
         const context = canvas.getContext("2d");
-        
+
         let lastValue = 0;
         itens.forEach((item) => {
             context.beginPath();
-            let startAngle = lastValue + 0.05;
+            context.lineCap = "butt";
+            let startAngle = lastValue;
             let endAngle = toRadians((item.value * 360)) + lastValue;
+            // context.moveTo(x, y);
             context.arc(x, y, radius, startAngle, endAngle, false);
+            // context.closePath();
             context.strokeStyle = item.color;
             context.lineWidth = lineWidth;
             lastValue = endAngle;
             context.stroke();
         });
+
+
+        // Calculate the position to place the text
+        // For example, let's say you want to place the text at the top of the circle
+        let angleInRadians = Math.PI * 1.5; // 90 degrees in radians
+        let textX = x + Math.cos(angleInRadians) * radius;
+
+        // Adjust the textOffset based on the text size to center it properly
+        context.font = textSize + "px Arial"; // Set font size
+        let textWidth = context.measureText(text).width;
+        let textOffsetX = -textWidth / 2;
+        context.fillText(text, (textX + textOffsetX), y);
     </script>
 </body>
 

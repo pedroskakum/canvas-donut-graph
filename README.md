@@ -2,4 +2,4 @@
 
 change inputs and transpile it for your perfect project.
 
-(example-graph.png)
+[Example](example-graph.png)

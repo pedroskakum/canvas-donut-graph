@@ -67,15 +67,12 @@
             context.lineCap = "butt";
             let startAngle = lastValue;
             let endAngle = toRadians((item.value * 360)) + lastValue;
-            // context.moveTo(x, y);
             context.arc(x, y, radius, startAngle, endAngle, false);
-            // context.closePath();
             context.strokeStyle = item.color;
             context.lineWidth = lineWidth;
             lastValue = endAngle;
             context.stroke();
         });
-
 
         // Calculate the position to place the text
         // For example, let's say you want to place the text at the top of the circle
